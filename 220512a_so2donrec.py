@@ -7,45 +7,38 @@ import requests
 
 #Test時にはGoogleColabにjsonのアップロード必要
 
-"""
-urlItem = "https://so2-api.mutoys.com/master/item.json"
-session = requests.Session()
-data = session.get(urlItem)
-jitem = json.loads(data.text)
-urlStore = "https://so2-api.mutoys.com/json/sale/all.json"
-data = session.get(urlStore)
-jst = json.loads(data.text)
-print(jitem)
-print(jst)
-"""
+
 # 自分の店の名前
 nameMyShop=""
+isTest=False
 
-# json open load
-jopenitem = open('soldout2item.json', 'r', encoding='Shift_JIS')
-jitem = json.load(jopenitem)
-jopentown = open('soldout2town.json', 'r', encoding='UTF-8')
-jtown = json.load(jopentown)
-jopenshop = open('soldout2shop.json', 'r', encoding='UTF-8')
-jshop = json.load(jopenshop)
-jopenst = open('soldout2store.json', 'r', encoding='UTF-8')
-jst = json.load(jopenst)
-#print(repr(jopenitem))
-#print(repr(jopentown))
-#print(repr(jopenst))
+if isTest ==True:
+  # json open load
+  jopenitem = open('soldout2item.json', 'r', encoding='Shift_JIS')
+  jitem = json.load(jopenitem)
+  jopentown = open('soldout2town.json', 'r', encoding='UTF-8')
+  jtown = json.load(jopentown)
+  jopenshop = open('soldout2shop.json', 'r', encoding='UTF-8')
+  jshop = json.load(jopenshop)
+  jopenst = open('soldout2store.json', 'r', encoding='UTF-8')
+  jst = json.load(jopenst)
+  #print(repr(jopenitem))
+  #print(repr(jopentown))
+  #print(repr(jopenst))
+elif isTest==False:
+  jopentown = open('soldout2town.json', 'r', encoding='UTF-8')
+  jtown = json.load(jopentown)
 
-# urlItem = "https://so2-api.mutoys.com/master/item.json"
-# session = requests.Session()
-# data = session.get(urlItem)
-# jitem = json.loads(data.text)
-# urlStore = "https://so2-api.mutoys.com/json/sale/all.json"
-# data = session.get(urlStore)
-# jst = json.loads(data.text)
-# urlShop = "https://so2-api.mutoys.com/json/shop/all.json"
-# data = session.get(urlShop)
-# jshop = json.loads(data.text)
-
-
+  urlItem = "https://so2-api.mutoys.com/master/item.json"
+  session = requests.Session()
+  data = session.get(urlItem)
+  jitem = json.loads(data.text)
+  urlStore = "https://so2-api.mutoys.com/json/sale/all.json"
+  data = session.get(urlStore)
+  jst = json.loads(data.text)
+  urlShop = "https://so2-api.mutoys.com/json/shop/all.json"
+  data = session.get(urlShop)
+  jshop = json.loads(data.text)
 
 def getItemid(name):
   jitemvals = jitem.values()
@@ -135,15 +128,15 @@ for num in range (0,76,between):
       for b in buyitemsets:
         print(b)
 
-csvlist = [] # 配列を作成
-for link in links: # aタグのテキストデータを配列に格納
-    sample_txt = link.text
-    csvlist.append(sample_txt)
+# csvlist = []
+# for link in links:
+#     sample_txt = link.text
+#     csvlist.append(sample_txt)
 
-# CSVファイルを開く。ファイルがない場合は新規作成
-f = open("output_sample.csv", "w")
-writecsv = csv.writer(f, lineterminator='\n')
+# # CSVファイルを開く。ファイルがない場合は新規作成
+# f = open("output_sample.csv", "w")
+# writecsv = csv.writer(f, lineterminator='\n')
 
-writecsv.writerow(csvlist) # 出力
+# writecsv.writerow(csvlist) # 出力
 
-f.close() # CSVファイルを閉じる
+# f.close()

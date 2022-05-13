@@ -10,7 +10,7 @@ import requests
 
 # 自分の店の名前
 nameMyShop=""
-isTest=False
+isTest=True
 
 if isTest ==True:
   # json open load
